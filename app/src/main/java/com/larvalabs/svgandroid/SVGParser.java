@@ -1372,9 +1372,12 @@ public class SVGParser {
 			}
 			
 			if (localName.equals("svg")) {
-				int width = (int) Math.ceil(getFloatAttr("width", atts));
-				int height = (int) Math.ceil(getFloatAttr("height", atts));
-				canvas = picture.beginRecording(width, height);
+				float width = getFloatAttr("width", atts);
+				float height = getFloatAttr("height", atts);
+				float[] nums = parseViewBox(getStringAttr("viewBox",atts));
+				float scaleWidth = (nums[2] - nums[0]) / width;
+				float scaleHeight = (nums[3] - nums[1]) /height;
+				canvas = picture.beginRecording((int)( width*scaleWidth), (int) (height*scaleHeight));
 			} else if (localName.equals("defs")) {
 				inDefsElement = true;
 			} else if (localName.equals("linearGradient")) {
@@ -1629,6 +1632,19 @@ public class SVGParser {
 			} else if (!hidden) {
 				Log.d(TAG, "UNRECOGNIZED SVG COMMAND: " + localName);
 			}
+		}
+
+		private float[] parseViewBox(String viewBoxStr) {
+			String[] viewBox = viewBoxStr.split("\\s+");
+			float[] nums = new float[4];
+			if (viewBox.length == 4){
+				for (int i = 0; i < 4; i++) {
+					nums[i] = Float.parseFloat(viewBox[i]);
+				}
+			}else {
+				throw new RuntimeException("Invalid ViewBox");
+			}
+			return nums;
 		}
 
 		@SuppressWarnings("unused")
