@@ -20,7 +20,25 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile project(':svgandroid')
 }
+
+//preBuild<<{
+//    println('add preBuild')
+//}
+//
+//def addTestTask = { theTask ->
+//    def taskName = theTask.name
+//    if (taskName.equals("assembleRelease")||taskName.equals("assembleDebug")) {
+//        println("add test hello\n")
+//        theTask.dependsOn "test1"
+//    }
+//}
+//task "test1"<<{
+//    println("test hello \n")
+//}
+//
+//tasks.whenTaskAdded(addTestTask)

@@ -4,7 +4,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.larvalabs.svgandroid.R;
 import com.larvalabs.svgandroid.SVGParser;
 
 /**

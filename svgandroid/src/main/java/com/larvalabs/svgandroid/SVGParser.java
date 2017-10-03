@@ -76,10 +76,10 @@ import javax.xml.parsers.SAXParserFactory;
  * Optionally, a single color can be searched and replaced in the SVG while parsing.
  * You can also parse an svg path directly.
  *
- * @see #getSVGFromResource(android.content.res.Resources, int)
- * @see #getSVGFromAsset(android.content.res.AssetManager, String)
+ * @see #getSVGFromResource(Resources, int)
+ * @see #getSVGFromAsset(AssetManager, String)
  * @see #getSVGFromString(String)
- * @see #getSVGFromInputStream(java.io.InputStream)
+ * @see #getSVGFromInputStream(InputStream)
  * @see #parsePath(String)
  *
  * @author Larva Labs, LLC
