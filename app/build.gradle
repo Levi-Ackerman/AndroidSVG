@@ -17,15 +17,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-//            variant.outputs.each { output ->
-//                println output.dirName
-//                def outputFile = output.outputFile
-//                if (outputFile != null && outputFile.name.endsWith('release.apk')) {
-//                    def fileName = "${project.name}${variant.flavorName}_${defaultConfig.versionName}_${releaseTime()}"
-//                    def outputPath = "../output/apk";
-//                    output.outputFile = new File(outputPath, fileName + ".apk")
-//                }
-//            }
 }
 
 dependencies {
@@ -34,43 +25,4 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile project(':svgandroid')
 }
-
-task 'test2'<<{
-    println 'test2'
-}
-
-preBuild.dependsOn 'test2'
-
-task 'test1'<<{
-    println('add preBuild')
-
-    android.applicationVariants.all { variant ->
-        if (variant.buildType.name == 'debug') {
-            FileTree tree = fileTree(dir:"${variant.mergeResources.outputDir}/raw")
-            tree.each { file ->
-                println(file.path)
-                if (file.name.endsWith('.svg')){
-                    println("${delete(file)}")
-                }
-            }
-        }
-    }
-}
-import top.hello.Hello
-Hello hello = new Hello()
-hello.print()
-tasks.each {
-    println("task name: ${it.name}")
-}
-
-//mergeDebugResources.dependsOn 'test1'
-//
-//def addTestTask = { theTask ->
-//    def taskName = theTask.name
-//    if (taskName.equals("packageReleaseResources")||taskName.equals("packageDebugResources")) {
-//        println("add test hello\n")
-//        theTask.dependsOn "test1"
-//    }
-//}
-//
-//tasks.whenTaskAdded(addTestTask)
+apply plugin: top.lizhengxian.plugin.SVGCompiler
