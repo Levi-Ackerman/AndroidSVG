@@ -1,1 +1,1 @@
-include ':app', ':svgandroid'
+include ':app','buildSrc', ':svgandroid'
