@@ -7,6 +7,14 @@ class SVGCompiler implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        println('SVGCompiler applied!')
+        project.extensions.create('svg',SVG)
+        project.task('compileSVG')<<{
+            def svg = project['svg']
+            File dir = new File("${project.name}${File.separator}${svg.path}");
+            dir.listFiles().each {
+                println("file:${it.name}")
+            }
+        }
+        project.preBuild.dependsOn 'compileSVG'
     }
 }

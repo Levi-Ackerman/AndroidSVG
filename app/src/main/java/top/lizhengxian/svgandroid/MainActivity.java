@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         ImageView imageView = (ImageView) findViewById(R.id.img);
-        System.out.println(""+R.raw.refresh);
-//        imageView.setImageDrawable(SVGParser.getSVGFromResource(getResources(),R.raw.viewgallery).createPictureDrawable());
+        imageView.setImageDrawable(SVGParser.getSVGFromResource(getResources(),R.raw.viewgallery).createPictureDrawable());
     }
 }
